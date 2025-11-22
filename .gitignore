@@ -1,0 +1,29 @@
+# CMake build directories
+/build*/
+*/build*/
+
+# CMake generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Ninja artifacts
+.ninja_deps
+.ninja_log
+
+# Editor/IDE files
+.vscode/
+.idea/
+
+# Compiler output
+*.o
+*.obj
+*.elf
+*.hex
+*.bin
+*.map
+
+# AVR-specific temp files
+*.lst
+*.srec

@@ -1,7 +1,9 @@
-#pragma once
 // @file:	mem.h
 // @author: sramos
 // @brief:	Memory map of registers in ATMEGA328P
+
+#pragma once
+
 
 namespace mem_map
 {

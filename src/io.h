@@ -1,7 +1,8 @@
-#pragma once
 // @file:	io.h
 // @author: sramos
 // @brief:	Input/Output register definitions and helper functions
+
+#pragma once
 
 #include "mem.h"
 

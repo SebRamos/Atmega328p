@@ -1,7 +1,8 @@
-#pragma once
 // @file:	delay.h
 // @author: sramos
 // @brief:	Delay function implementation with TIMER1 setups
+
+#pragma once
 
 #include "mem.h"
 #include "interrupt.h"

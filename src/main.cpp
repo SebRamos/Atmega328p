@@ -1,3 +1,7 @@
+// @file:	main.cpp
+// @author: sramos
+// @brief:	Top level execution containing main loop
+
 #include <stdint.h>
 #include "io.h"
 #include "delay.h"

@@ -1,6 +1,7 @@
 // @file:	uart.cpp
 // @author: sramos
 // @brief:	UART Init and functionality
+
 #include <stdint.h>
 #include "uart.h"
 

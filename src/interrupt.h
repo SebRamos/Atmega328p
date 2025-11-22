@@ -1,8 +1,10 @@
-#ifndef INTERRUPT_H
-#define INTERRUPT_H
 // @file:	interrupt.h
 // @author: sramos
 // @brief:	Interrupt vector table (IVT) & Interrupt Service Routine (ISR) definitions and attributes.
+
+#ifndef INTERRUPT_H
+#define INTERRUPT_H
+
 
 // Set the vector attributes to corresponding vector table symbol
 // e.g. __vector_11(void) __attribute__((arg1, arg2, etc.))

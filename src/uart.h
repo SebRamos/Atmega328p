@@ -1,7 +1,8 @@
-#pragma once
 // @file:	uart.h
 // @author: sramos
 // @brief:	UART Init and functionality
+
+#pragma once
 
 #include "mem.h"
 #include "delay.h"
