@@ -28,3 +28,4 @@ cmake --build build --clean-first
 
 ## Developement
 Various 'To-Dos' are declared in the source but otherwise, a full library the can utilize most of what the ATMega328p can do is sought after.
+
