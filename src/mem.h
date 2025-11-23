@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <stdint.h>
 
 namespace mem_map
 {

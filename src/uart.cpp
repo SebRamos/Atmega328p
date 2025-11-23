@@ -26,9 +26,12 @@ void Uart_driver_t::init()
 
 void Uart_driver_t::setBaud(uint32_t rate)
 {
-	// TODO: Temp hardcode. Make "rate" actually change
-	*_ubrr0h = 0x00;
-	*_ubrr0l = 0x08; // UBRR0 = 8. BR = 115200 @ 16.0 MHz
+	// UBBR = (f_osc / (16 * BR)) - 1
+	static const uint32_t F_OSC = 16000000; // Clock speed
+	uint16_t baudRateReg = uint16_t((F_OSC / (16 * rate)) - 1);
+
+	*_ubrr0h = (uint8_t)((baudRateReg & 0xff00) >> 8);
+	*_ubrr0l = (uint8_t)(baudRateReg & 0x00ff);
 }
 
 void Uart_driver_t::transmitByte(uint8_t data)

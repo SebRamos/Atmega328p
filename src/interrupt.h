@@ -12,9 +12,8 @@
 // signal - tells the compiler this is an interrupt handler
 // used   - prevents the compiler from optimizing this setting away
 // externally_visible - ensures the linker can see this
-#define ISR(vector)	\
-extern "C" void vector(void) __attribute__((signal, used, externally_visible));	\
-void vector(void)
+#define ISR_SIG(vector) extern "C" void vector(void) __attribute__((signal, used, externally_visible));
+#define ISR(vector) void vector(void)
 
 // Set Vector syntax to vector name in table defined in ATMEGA assembly 
 // e.g. Vector 11 is __vector_11 symbol in table
