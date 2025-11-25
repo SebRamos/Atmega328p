@@ -4,6 +4,7 @@
 
 #include <stdint.h>
 #include "uart.h"
+#include "utils.h"
 
 Uart_driver_t::Uart_driver_t()
 {
@@ -28,7 +29,7 @@ void Uart_driver_t::setBaud(uint32_t rate)
 {
 	// UBBR = (f_osc / (16 * BR)) - 1
 	static const uint32_t F_OSC = 16000000; // Clock speed
-	uint16_t baudRateReg = uint16_t((F_OSC / (16 * rate)) - 1);
+	uint16_t baudRateReg = uint16_t(utils::round(F_OSC / (16.0f * rate)) - 1);
 
 	*_ubrr0h = (uint8_t)((baudRateReg & 0xff00) >> 8);
 	*_ubrr0l = (uint8_t)(baudRateReg & 0x00ff);
@@ -42,13 +43,15 @@ void Uart_driver_t::transmitByte(uint8_t data)
 void Uart_driver_t::transmitMessage(const uint8_t* msg, uint8_t cnt)
 {
 	bool txMessageComplete = false;
-	_txByteComplete = true;
+	setByteComplete();
 	uint8_t byteNum = 0;
 	
 	while(!txMessageComplete)
 	{
 		if(_txByteComplete)
 		{
+			// Time to send another byte
+
 			if (byteNum < cnt)
 			{
 				transmitByte(msg[byteNum++]);
@@ -56,6 +59,7 @@ void Uart_driver_t::transmitMessage(const uint8_t* msg, uint8_t cnt)
 			}
 			else
 			{
+				// ... unless we finished the message
 				txMessageComplete = true;
 			}
 		}

@@ -1,7 +1,6 @@
 # Atmega328p
 This repositroy containts various software-level drivers and interfaces for the ATMega328p. It's purpose is manually implement utilities and libraries that communicate directly with hardware and registers for the purposes of being used by an application at the 'higher-level'. 
 
-This project assumes a stand-alone ATMega328p is used and programmed directly with an aftermarket programmer.
 
 ## CMake Build
 **Run the following commands at the project root to build the project**
