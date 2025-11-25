@@ -17,6 +17,7 @@ public:
 	~Uart_driver_t();
 	void init();
 	void transmitMessage(const uint8_t* msg, uint8_t cnt);
+	inline void setByteComplete() 	{ _txByteComplete = true; }
 
 private:
 	void loadInitMessage();
@@ -28,11 +29,6 @@ private:
 	uint8_t* _ucsr0b	= (uint8_t*)mem_map::UCSR0B;
 	uint8_t* _ubrr0h	= (uint8_t*)mem_map::UBRR0H;
 	uint8_t* _ubrr0l	= (uint8_t*)mem_map::UBRR0L;
-	bool	 _txByteComplete = true;
 
-	ISR(UART_TX_vect)
-	{
-		_txByteComplete = true;
-	}
-
+	volatile bool _txByteComplete;
 };
