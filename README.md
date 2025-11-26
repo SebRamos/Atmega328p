@@ -1,7 +1,7 @@
 # Atmega328p
 This repository containts various software-level drivers and interfaces for the ATMega328p. It's purpose is manually implement utilities and libraries that communicate directly with hardware and registers for the purposes of being used by an application at the 'higher-level'. 
 
-## Developement
+## Development
 Various 'To-Dos' are declared in the source but otherwise, a full library the can utilize most of what the ATMega328p can do is sought after. As stated previously, a hardware-abstraction layer (HAL) similar to STM that covers most of the hardware drivers within the system-on-chip (SoC) is the end goal.
 
 ## Tools

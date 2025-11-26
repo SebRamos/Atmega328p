@@ -26,26 +26,29 @@ ISR(TIMER1_COMPA_vect)
 
 void init()
 {
-	*tccr1b |= 0x08;
-	*timsk1 |= 0x02;
+	mem::writeReg(tccr1b, 0x08);
+	mem::writeReg(timsk1, 0x02);
 	sei();
 }
 
 void delayTicks(uint16_t ticks)
 {
 	delayFlag = true;
-	*ocr1ah = (ticks & 0xff00) >> 8;
-	*ocr1al = (ticks & 0x00ff);
-	*tcnt1h = 0x00;
-	*tcnt1l = 0x00;
-	*tccr1b |= 0x05;
+	mem::writeReg(ocr1ah, ((ticks & 0xff00) >> 8), mem::Write_mode_e::SET);
+	mem::writeReg(ocr1al, (ticks & 0x00ff), mem::Write_mode_e::SET);
+	mem::clearReg(tcnt1h);
+	mem::clearReg(tcnt1l);
+
+	// Enable clock source so the timer starts
+	mem::writeReg(tccr1b, 0x05);
 	
 	while(delayFlag)
 	{
 		// do nothing until isr resets the flag
 	}
 	
-	*tccr1b &= 0xf8;
+	// Clear clock source so that the timer stops
+	mem::clearReg(tccr1b, 0x05, mem::Clear_mode_e::PARTIAL);
 }	
 
 void delayMS(uint16_t ms)
