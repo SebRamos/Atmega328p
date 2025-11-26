@@ -1,10 +1,29 @@
 // @file:	mem.h
 // @author: sramos
-// @brief:	Memory map of registers in ATMEGA328P
+// @brief:	Declaration of memory utilities and memory map of registers in ATMEGA328P
 
 #pragma once
 
 #include <stdint.h>
+
+namespace mem
+{
+	enum class Write_mode_e
+	{
+		AND,	// Value gets AND'd into current register value
+		OR,		// Value gets OR'd into current register value
+		SET		// Will overwrite previous value
+	};
+
+	enum class Clear_mode_e
+	{
+		ALL,		// Entire value in the register is cleared
+		PARTIAL		// Only specified bits in the register are cleared
+	};
+
+	void writeReg(uint8_t* reg, uint8_t value, Write_mode_e wr_mode = Write_mode_e::OR);
+	void clearReg(uint8_t* reg, uint8_t clear_val = 0, Clear_mode_e clr_mode = Clear_mode_e::ALL);
+} // endnamespace mem
 
 namespace mem_map
 {
