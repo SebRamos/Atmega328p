@@ -6,6 +6,7 @@
 #include "io.h"
 #include "delay.h"
 #include "uart.h"
+#include "lcd_intf.h"
 
 Uart_driver_t uart;
 
@@ -17,14 +18,15 @@ ISR(UART_TX_vect)
 
 int main()
 {
-	set_ddr(io_reg->DDRB, PIN5, IO_dir_e::OUTPUT);
+	io::set_ddr(io::reg_map->DDRB, io::pin_e::PIN5, io::direction_e::OUTPUT);
 	delay::init();
 	uart.initTransmitter();
+	lcd::init();
 
     while (1) 
     {
 	 	delay::delayMS(500);
-	 	set_output(io_reg->PORTB, PIN5, IO_out_e::TOGGLE);
+	 	io::set_output(io::reg_map->PORTB, io::pin_e::PIN5, io::output_e::TOGGLE);
     }
 }
 
