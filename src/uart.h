@@ -8,16 +8,20 @@
 #include "delay.h"
 #include "interrupt.h"
 
-ISR_SIG(UART_TX_vect)
+ISR_SIG(UART_RX_vect)
 
 class Uart_driver_t
 {
 public:
 	Uart_driver_t();
 	~Uart_driver_t();
-	void init();
+	void initTransmitter();
+	void initReceiver();
 	void transmitMessage(const uint8_t* msg, uint8_t cnt);
 	inline void setByteComplete() 	{ _txByteComplete = true; }
+	void readByte();
+
+	inline uint8_t getLastByte()	{ return _lastByte; }
 
 private:
 	void loadInitMessage();
@@ -31,4 +35,5 @@ private:
 	uint8_t* _ubrr0l	= (uint8_t*)mem_map::UBRR0L;
 
 	volatile bool _txByteComplete;
+	volatile uint8_t _lastByte;
 };

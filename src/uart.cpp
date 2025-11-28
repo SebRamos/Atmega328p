@@ -16,13 +16,21 @@ Uart_driver_t::~Uart_driver_t()
 	
 }
 
-void Uart_driver_t::init()
+void Uart_driver_t::initTransmitter()
 {
 	setBaud(115200);	// Hardcoded
 	mem::writeReg(_ucsr0b, 0x08);	// Enable Transmitter
 	mem::writeReg(_ucsr0b, 0x40);	// Enable Tx Complete Interrupt
 	sei();
 	loadInitMessage();
+}
+
+void Uart_driver_t::initReceiver()
+{
+	setBaud(115200);	// Hardcoded
+	mem::writeReg(_ucsr0b, 0x10);	// Enable Receiver
+	mem::writeReg(_ucsr0b, 0x80);	// Enable Rx Complete Interrupt
+	sei();
 }
 
 void Uart_driver_t::setBaud(uint32_t rate)
@@ -64,6 +72,11 @@ void Uart_driver_t::transmitMessage(const uint8_t* msg, uint8_t cnt)
 			}
 		}
 	}
+}
+
+void Uart_driver_t::readByte()
+{
+	_lastByte = *_udr0;
 }
 
 uint8_t Uart_driver_t::countChars(const char* msg)
