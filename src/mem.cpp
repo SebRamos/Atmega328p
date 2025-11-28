@@ -62,4 +62,23 @@ namespace mem
 			// print_err
 		}
 	}	
+
+	uint8_t readReg(uint8_t* reg)
+	{
+		const uint8_t ERR_VAL = 0xff; // some error value. Put this somewhere else?
+		uint8_t value = 0;
+
+		if (reg != nullptr)
+		{
+			value = *reg;
+		}
+		else
+		{
+			// @todo: implement error prints
+			// print_err
+			value = ERR_VAL;
+		}
+
+		return value;
+	}
 } // end namespace mem

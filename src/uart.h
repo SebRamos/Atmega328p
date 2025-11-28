@@ -8,7 +8,7 @@
 #include "delay.h"
 #include "interrupt.h"
 
-ISR_SIG(UART_RX_vect)
+ISR_SIG(UART_TX_vect)
 
 class Uart_driver_t
 {

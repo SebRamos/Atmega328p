@@ -5,7 +5,6 @@
 #ifndef INTERRUPT_H
 #define INTERRUPT_H
 
-
 // Set the vector attributes to corresponding vector table symbol
 // e.g. __vector_11(void) __attribute__((arg1, arg2, etc.))
 // Attributes:

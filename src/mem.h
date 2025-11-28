@@ -23,6 +23,7 @@ namespace mem
 
 	void writeReg(uint8_t* reg, uint8_t value, Write_mode_e wr_mode = Write_mode_e::OR);
 	void clearReg(uint8_t* reg, uint8_t clear_val = 0, Clear_mode_e clr_mode = Clear_mode_e::ALL);
+	uint8_t readReg(uint8_t* reg);
 } // endnamespace mem
 
 namespace mem_map
