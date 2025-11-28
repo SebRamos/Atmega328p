@@ -8,42 +8,22 @@
 #include "uart.h"
 
 Uart_driver_t uart;
-volatile bool delayChangeFlag = true;
 
 // @todo: MOVE THIS OUTTA HERE !
-
-ISR(UART_RX_vect)
+ISR(UART_TX_vect)
 {
-	uart.readByte();
-	delayChangeFlag = true;
+	uart.setByteComplete();
 }
 
 int main()
 {
 	set_ddr(io_reg->DDRB, PIN5, IO_dir_e::OUTPUT);
 	delay::init();
-	uart.initReceiver();
-	uint16_t delay = 0;
+	uart.init();
 
     while (1) 
     {
-		if (delayChangeFlag)
-		{
-			volatile uint8_t lastByte = uart.getLastByte();
-
-			if ((lastByte == '1') || (lastByte == 1))
-			{
-				delay = 0;
-			}
-			else
-			{
-				delay += lastByte;
-			}
-
-			delayChangeFlag = false;
-		}
-
-	 	delay::delayMS(delay);
+	 	delay::delayMS(500);
 	 	set_output(io_reg->PORTB, PIN5, IO_out_e::TOGGLE);
     }
 }
