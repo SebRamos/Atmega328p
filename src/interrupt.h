@@ -5,7 +5,6 @@
 #ifndef INTERRUPT_H
 #define INTERRUPT_H
 
-
 // Set the vector attributes to corresponding vector table symbol
 // e.g. __vector_11(void) __attribute__((arg1, arg2, etc.))
 // Attributes:
@@ -21,9 +20,11 @@
 
 // Vector table
 #define RESET_vect			VECTOR(0)	// External pin, power-on reset
-#define UART_TX_vect		VECTOR(20)  // UART Tx Complete
 #define TIMER1_CAPT_vect	VECTOR(10)	// Timer/Counter1 capture event
 #define TIMER1_COMPA_vect	VECTOR(11)  // Timer/Counter1 Compare Match A
+#define UART_RX_vect        VECTOR(18)  // UART Rx Complete
+#define UART_TX_vect		VECTOR(20)  // UART Tx Complete
+
 
 // GLobal functions
 #define sei()	__asm__ __volatile__ ("sei" ::: "memory")	// Set interrupt Flag - Enables I-Bit in SREG

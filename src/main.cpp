@@ -19,7 +19,7 @@ int main()
 {
 	set_ddr(io_reg->DDRB, PIN5, IO_dir_e::OUTPUT);
 	delay::init();
-	uart.init();
+	uart.initTransmitter();
 
     while (1) 
     {
