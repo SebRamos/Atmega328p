@@ -18,15 +18,15 @@ ISR(UART_TX_vect)
 
 int main()
 {
-	io::set_ddr(io::reg_map->DDRB, io::pin_e::PIN5, io::direction_e::OUTPUT);
+	//io::set_ddr(io::reg_map->DDRB, io::pin_e::PIN5, io::direction_e::OUTPUT);
 	delay::init();
 	uart.initTransmitter();
 	lcd::init();
 
     while (1) 
     {
-	 	delay::delayMS(500);
-	 	io::set_output(io::reg_map->PORTB, io::pin_e::PIN5, io::output_e::TOGGLE);
+	 	//delay::delayMS(100);
+	 	//io::set_output(io::reg_map->PORTB, io::pin_e::PIN5, io::output_e::TOGGLE);
     }
 }
 
